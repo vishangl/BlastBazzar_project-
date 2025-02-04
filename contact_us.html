@@ -88,10 +88,9 @@
             padding: 2em;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(13px);
             border: 1px solid #ffcc00;
             transition: transform 0.3s ease;
-            z-index: 1000;
         }
 
         .contact-form:hover {
@@ -188,6 +187,16 @@
             }
         }
     </style>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+    emailjs.init({
+        publicKey: "RC2A4YfAGSANjUCEW",
+    });
+    })();
+    </script>
 </head>
 <body>
     <!-- Navbar -->
@@ -214,7 +223,7 @@
                 <label for="message">Message:</label>
                 <textarea id="message" placeholder="Write your message..." required></textarea>
 
-                <button type="submit">Send Message</button>
+                <button type="submit" onclick="sendMail()">Send Message</button>
             </form>
         </div>
     </main>
@@ -223,5 +232,15 @@
     <footer>
         <p>&copy; 2024 BlastBazzar. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        function sendMail(){
+            let parms = {
+                email : document.getElementById("email").value,
+                message : document.getElementById("message").value,
+            }
+            emailjs.send("service_8ifeixa","template_ou1vsxq".parms).then(alert("Email send!!"))
+        }
+    </script>
 </body>
 </html>
