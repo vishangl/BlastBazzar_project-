@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background: url("images/home/background2.gif");
+    font-family: 'Poppins', sans-serif;
+    color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    padding: 15px 30px;
+    color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid #ffcc00;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.logo img {
+    width: 200px;
+    height: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ff9900;
+    text-shadow: 0 0 10px #ff9900;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3em;
+}
+/* Main Content */
+main h2 {
+    font-size: 3.5em; /* Increased size */
+    margin-bottom: 1em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ff9900;
+    text-shadow: 0 0 10px #ff9900;
+}
+
+
+/* About Section */
+.about-section {
+    background: transparent;
+    padding: 2.5em;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    max-width: 75%;
+    margin: auto;
+    transition: transform 0.3s ease;
+    border: 1px solid #ffcc00;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.about-section:hover {
+    transform: scale(1.02);
+}
+
+.about-section h2 {
+    text-align: center;
+    font-size: 58px;
+    font-weight: 700;
+    color: #ffcc00;
+    margin-bottom: 1em;
+}
+
+.about-section h3 {
+    margin-top: 1.5em;
+    color: #ffcc00;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.about-section ul {
+    list-style: none;
+    padding-left: 1.5em;
+    margin-top: 1em;
+}
+
+.about-section ul li {
+    padding-left: 1.2em;
+    position: relative;
+}
+
+.about-section ul li::before {
+    content: '\2022';
+    color: #ffcc00;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.about-section p a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.about-section p a:hover {
+    color: #ffa500;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background: transparent;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    bottom: 0; /* Stick to the bottom of the page */
+    left: 0;
+    width: 100%; /* Ensure the footer spans the full width */
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    border-top: 2px solid #ffcc00;
+}
+
+    </style>
+</head>
+<body>
+        <div class="navbar">
+            <div class="logo">
+                <img src="./images/home/signature (2).png" alt="BlastBazzar Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="shopping_cart.html">Cart</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+                <li><a href="contact_us.html">Contact</a></li>
+            </ul>
+        </div>
+    <main>
+        <h2>About Us</h2>
+        <section class="about-section">
+            <p>Welcome to <strong>Blast Bazzar</strong> – your one-stop destination for premium firecrackers. We are committed to bringing joy and celebration to your special occasions with the highest quality fireworks.</p>
+            
+            <h3>Our Mission</h3>
+            <p>To provide a safe, exciting, and reliable selection of fireworks that light up your celebrations with color, sound, and happiness.</p>
+            
+            <h3>Why Choose Us?</h3>
+            <ul>
+                <li>Wide variety of fireworks for all occasions</li>
+                <li>Affordable pricing and exclusive deals</li>
+                <li>High safety standards and premium quality products</li>
+                <li>Customer-focused service and support</li>
+            </ul>
+
+            <h3>Our Story</h3>
+            <p>Founded in [Insert Year], Firecracker Store was born out of a passion for celebrations and a love for fireworks. Over the years, we have grown into a trusted provider of firecrackers, serving customers across the region.</p>
+            
+            <h3>Contact Us</h3>
+            <p>If you have any questions, feel free to reach out to us through our <a href="contact_us.html">Contact Us</a> page.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Firecracker Store. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

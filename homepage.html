@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlastBazzar - Fireworks</title>
+    <style>
+    /* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("images/home/background2.gif");
+    font-family: "Poppins", sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Announcement Bar */
+.announcement-bar {
+    background: linear-gradient(90deg, #ff3131, #ff5733);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0px 4px 10px rgba(255, 49, 49, 0.5);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid #ffcc00;
+}
+
+.logo img {
+    width: 230px;
+    filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff9900;
+    text-shadow: 0 0 10px #ff9900;
+}
+
+.navbar-icons a {
+    color: white;
+    font-size: 23px;
+    transition: color 0.3s;
+}
+
+.navbar-icons a:hover {
+    color: #ff5733;
+}
+
+/* Product Listings */
+.product-listings {
+    padding: 50px;
+    text-align: center;
+}
+
+.product-listings h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff9900;
+    text-shadow: 0 0 10px #ff9900;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 12px 24px rgba(255, 87, 51, 0.3);
+}
+
+.Available-badge {
+    background: linear-gradient(90deg, #ff3131, #ff5733);
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    border-radius: 6px;
+}
+
+.product-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+.product-card h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.product-card .price {
+    font-size: 24px;
+    color: #ff9900;
+    text-shadow: 0 0 10px #ff9900;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-card .buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px;
+}
+
+.product-card .buttons button {
+    background: linear-gradient(90deg, #ff3131, #ff5733);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.product-card .buttons button:hover {
+    transform: scale(1.1);
+}
+
+footer {
+    background: transparent;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    bottom: 0; /* Stick to the bottom of the page */
+    left: 0;
+    width: 100%; /* Ensure the footer spans the full width */
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    border-top: 2px solid #ffcc00;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .product-card img {
+        height: 250px;
+    }
+    .product-listings h2 {
+        font-size: 26px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .navbar {
+        padding: 10px;
+    }
+    .logo img {
+        width: 180px;
+    }
+    .nav-links a {
+        font-size: 18px;
+    }
+    .product-card img {
+        height: 200px;
+    }
+}
+</style>
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <marquee class="announcement-bar" scrollAmount="40">
+        Currently Accepting Orders for Bilimora!
+    </marquee>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="./images/home/signature (2).png" alt="BlastBazzar Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="shopping_cart.html">Cart</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="contact_us.html">Contact</a></li>
+        </ul>
+        <div class="navbar-icons">
+            <img src="./images/home/shopping-cart-line.png" alt="cart">
+            <span class="cart-items-count"></span>
+        </div>
+    </div>
+
+    <!-- Product Listings -->
+    <!-- Vanita"s Fireworks Collections-->
+    <section class="product-listings">
+        <h2>Vanita's Fireworks Collections</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/sky_short.png" alt="Product 1">
+                <h3 id="1.1">Vanita's Sky Shots (2 Pcs)</h3>
+                <p class="price">₹600</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.1', 'Vanita\'s Sky Shots (2 Pcs)', 600, './images/vanita/sky_short.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/chip_chip.png" alt="Product 2">
+                <h3 id="1.2">Vanita's Chip mix (1 Box)</h3>
+                <p class="price">₹120</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.2', 'Vanita\'s Chip mix (1 Box)', 120, './images/vanita/chip_chip.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/divine.png" alt="Product 3">
+                <h3 id="1.3">Vanita's Divine (1 Box)</h3>
+                <p class="price">₹220</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.3', 'Vanita\'s Divine (1 Box)', 220, './images/vanita/divine.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/star_win.png" alt="Product 4">
+                <h3 id="1.4">Vanita's Starwin (1 Box)</h3>
+                <p class="price">₹250</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.4', 'Vanita\'s Starwin (1 Box)', 250, './images/vanita/star_win.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/seven_effects.png" alt="Product 5">
+                <h3 id="1.5">Vanita's Seven Effect (1 Box)</h3>
+                <p class="price">₹650</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.5', 'Vanita\'s Seven Effect (1 Box)', 650, './images/vanita/seven_effects.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/world_war.png" alt="Product 6">
+                <h3 id="1.6">Vanita's World War (2 Pcs)</h3>
+                <p class="price">₹1000</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.6', 'Vanita\'s World War (2 Pcs)', 1000, './images/vanita/world_war.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/dragon.png" alt="Product 7">
+                <h3 id="1.7">Vanita's Dragon (2 Pcs)</h3>
+                <p class="price">₹1200</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.7', 'Vanita\'s Dragon (2 Pcs)', 1200, './images/vanita/dragon.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/big_short.png" alt="Product 8">
+                <h3 id="1.8">Vanita's Big Shot (1 Box)</h3>
+                <p class="price">₹550</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.8', 'Vanita\'s Big Shot (1 Box)', 550, './images/vanita/big_short.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/star_night.png" alt="Product 9">
+                <h3 id="1.9">Vanita's Star Night (1 Box)</h3>
+                <p class="price">₹2600</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.9', 'Vanita\'s Star Night (1 Box)', 2600, './images/vanita/star_night.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/vanita/pom-pom.png" alt="Product 10">
+                <h3 id="1.10">Vanita's Pom-Pom (1 Box)</h3>
+                <p class="price">₹200</p>
+                <div class="buttons">
+                    <button onclick="addToCart('1.10', 'Vanita\'s Pom-Pom (1 Box)', 200, './images/vanita/pom-pom.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Malaiammal Fireworks Collections-->
+    <section class="product-listings">
+        <h2> Malaiammal Fireworks Collections</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 1">
+                <h3>2" 3 in 1 (1 Box)</h3>
+                <p class="price">₹400</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.1', 'malaiammal\'s  3 in 1 (1 Box)', 400, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 2">
+                <h3>15 Shot Multicolor (1 Box)</h3>
+                <p class="price">₹370</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.2', 'malaiammal\'s 15 Shot Multicolor (1 Box)', 370, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 3">
+                <h3>30 Shot Multicolor (1 Box)</h3>
+                <p class="price">₹650</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.3', 'malaiammal\'s 30 Shot Multicolor (1 Box)', 650, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 4">
+                <h3>60 Shot Multicolor (1 Box)</h3>
+                <p class="price">₹1250</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.4', 'malaiammal\'s 60 Shot Multicolor (1 Box)', 1250, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 5">
+                <h3>120 Shot Multicolor (1 Box)</h3>
+                <p class="price">₹2500</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.5', 'malaiammal\'s 120 Shot Multicolor (1 Box)', 2500, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 6">
+                <h3>240 Shot Multicolor (1 Box)</h3>
+                <p class="price">₹4500</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.6', 'malaiammal\'s 240 Shot Multicolor (1 Box)', 4500, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/RS/1.jpg" alt="Product 7">
+                <h3>1000 Lar (1 Box)</h3>
+                <p class="price">₹300</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.7', 'malaiammal\'s 1000 Lar (1 Box)', 300, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/RS/2.jpg" alt="Product 8">
+                <h3>2000 Lar (1 Box)</h3>
+                <p class="price">₹600</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.8', 'malaiammal\'s 2000 Lar (1 Box)', 600, './images/malaiammal/2.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/RS/1.jpg" alt="Product 9">
+                <h3>5000 Lar (1 Box)</h3>
+                <p class="price">₹1350</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.9', 'malaiammal\'s 5000 Lar (1 Box)', 1350, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 10">
+                <h3>28 Goa (1 Pcs)</h3>
+                <p class="price">₹20</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.10', 'malaiammal\'s 28 Goa (1 Pcs)', 20, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 11">
+                <h3>28 Chorsa (1 Pcs)</h3>
+                <p class="price">₹15</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.11', 'malaiammal\'s 28 Chorsa (1 Pcs)', 15, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 12">
+                <h3>Red Bijli(50) (1 Packet)</h3>
+                <p class="price">₹30</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.12', 'malaiammal\'s Red Bijli(50) (1 Packet)', 30, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/malaiammal/1.png" alt="Product 13">
+                <h3>Red Bijli(100) (1 Packet)</h3>
+                <p class="price">₹50</p>
+                <div class="buttons">
+                    <button onclick="addToCart('2.13', 'malaiammal\'s Red Bijli(100) (1 Packet)', 50, './images/malaiammal/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- A.D. -> Govinda's Fireworks Collections-->
+    <section class="product-listings">
+        <h2>Govinda's Fireworks Collections</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/RS/2.jpg" alt="Product 1">
+                <h3>1000 Lar (1 Box)</h3>
+                <p class="price">₹300</p>
+                <div class="buttons">
+                    <button onclick="addToCart('3.1', 'Govinda\'s 1000 Lar (1 Box)', 300, './images/RS/2.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/RS/1.jpg" alt="Product 2">
+                <h3>2000 Lar (1 Box)</h3>
+                <p class="price">₹600</p>
+                <div class="buttons">
+                    <button onclick="addToCart('3.2', 'Govinda\'s 2000 Lar (1 Box)', 600, './images/RS/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/RS/2.jpg" alt="Product 3">
+                <h3>5000 Lar (1 box)</h3>
+                <p class="price">₹1350</p>
+                <div class="buttons">
+                    <button onclick="addToCart('3.3', 'Govinda\'s 5000 Lar (1 Box)', 1350, './images/RS/2.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/RS/1.jpg" alt="Product 4">
+                <h3>10000 Lar (1 Box)</h3>
+                <p class="price">₹2500</p>
+                <div class="buttons">
+                    <button onclick="addToCart('3.4', 'Govinda\'s 10000 Lar (1 Box)', 2500, './images/RS/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legend's Fireworks Collections-->
+    <section class="product-listings">
+        <h2>Legend's Fireworks Collections</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/legends/1.png" alt="Product 1">
+                <h3>2 1/2 Single (1 Pcs)</h3>
+                <p class="price">₹180</p>
+                <div class="buttons">
+                    <button onclick="addToCart('4.1', 'Govinda\'s 2 1/2 Single (1 Pcs)', 180, './images/legends/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/legends/2.png" alt="Product 2">
+                <h3>3 1/2 2 (2 Pcs)</h3>
+                <p class="price">₹1000</p>
+                <div class="buttons">
+                    <button onclick="addToCart('4.2', 'Govinda\'s 3 1/2 2 (2 Pcs)', 1000, './images/legends/2.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/legends/3.png" alt="Product 3">
+                <h3>3 1/2 Nayagra Falls (1 Pcs)</h3>
+                <p class="price">₹500</p>
+                <div class="buttons">
+                    <button onclick="addToCart('4.3', 'Govinda\'s 3 1/2 Nayagra Falls (1 Pcs)', 500, './images/legends/3.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/legends/4.png" alt="Product 4">
+                <h3>15 Shot Multicolor (1 box)</h3>
+                <p class="price">₹400</p>
+                <div class="buttons">
+                    <button onclick="addToCart('4.4', 'Govinda\'s 15 Shot Multicolor (1 Box)', 400, './images/legends/4.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/legends/5.png" alt="Product 5">
+                <h3>25 Shot Crackling (1 Box)</h3>
+                <p class="price">₹550</p>
+                <div class="buttons">
+                    <button onclick="addToCart('4.5', 'Govinda\'s 25 Shot Crackling (1 Box)', 550, './images/legends/5.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Raghuram Sparklers Collections-->
+    <section class="product-listings">
+        <h2>Raghuram Sparklers Collections</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/1.png" alt="Product 1">
+                <h3>7 cm Electric (1 Pcs)</h3>
+                <p class="price">₹10</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.1', 'Raghuram\'s 7 cm Electric (1 Pcs)', 10, './images/raghuram/1.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/2.png" alt="Product 2">
+                <h3>7 cm Color (1 Pcs)</h3>
+                <p class="price">₹15</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.2', 'Raghuram\'s 7 cm Color (1 Pcs)', 15, './images/raghuram/2.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/3.png" alt="Product 3">
+                <h3>10 cm Electric (1 Pcs)</h3>
+                <p class="price">₹20</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.3', 'Raghuram\'s 10 cm Electric (1 Pcs)', 20, './images/raghuram/3.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/4.png" alt="Product 4">
+                <h3>10 cm Color (1 Pcs)</h3>
+                <p class="price">₹25</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.4', 'Raghuram\'s 10 cm Color (1 Pcs)', 25, './images/raghuram/4.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/5.png" alt="Product 5">
+                <h3>15 cm Electric (1 Pcs)</h3>
+                <p class="price">₹30</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.5', 'Raghuram\'s 15 cm Electric (1 Pcs)', 30, './images/raghuram/5.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/6.png" alt="Product 6">
+                <h3>15 cm Color (1 Pcs)</h3>
+                <p class="price">₹35</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.6', 'Raghuram\'s 15 cm Color (1 Pcs)', 35, './images/raghuram/6.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/7.png" alt="Product 7">
+                <h3>30 cm Electric (1 Pcs)</h3>
+                <p class="price">₹40</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.7', 'Raghuram\'s 30 cm Electric (1 Pcs)', 40, './images/raghuram/7.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/8.png" alt="Product 8">
+                <h3>30 cm Color (1 Pcs)</h3>
+                <p class="price">₹50</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.8', 'Raghuram\'s 30 cm Color (1 Pcs)', 50, './images/raghuram/8.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/9.png" alt="Product 9">
+                <h3>30 cm Green (1 Pcs)</h3>
+                <p class="price">₹50</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.9', 'Raghuram\'s 30 cm Green (1 Pcs)', 50, './images/raghuram/9.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/10.png" alt="Product 10">
+                <h3>50 cm Electric (1 Tube)</h3>
+                <p class="price">₹150</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.10', 'Raghuram\'s 50 cm Electric (1 Tube)', 150, './images/raghuram/10.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="Available-badge">Available</div>
+                <img src="./images/raghuram/11.png" alt="Product 11">
+                <h3>50 cm Color (1 Tube)</h3>
+                <p class="price">₹150</p>
+                <div class="buttons">
+                    <button onclick="addToCart('5.11', 'Raghuram\'s 50 cm Color (1 Tube)', 150, './images/raghuram/11.png')">Add to Cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 BlastBazzar. All Rights Reserved.</p>
+    </footer>
+
+    <script src="cart.js"></script>
+
+</body>  
+</html>
