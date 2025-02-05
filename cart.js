@@ -8,6 +8,23 @@ function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// Function to show toast message
+function showToast(message) {
+    let toast = document.getElementById("toast");
+    toast.innerHTML = message;
+    toast.style.display = "block";
+
+    // Trigger animation
+    toast.style.animation = "none"; // Reset animation
+    setTimeout(() => {
+        toast.style.animation = "fadeInOut 3s ease-in-out";
+    }, 10);
+
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 3000); // Hide after 3 seconds
+}
+
 // Function to add an item to the cart
 function addToCart(id, name, price, image) {
     let cart = getCart();
@@ -21,6 +38,9 @@ function addToCart(id, name, price, image) {
     }
 
     saveCart(cart);
+
+    // Show toast message instead of alert
+    showToast(`${name} has been added to the cart!`);
 }
 
 

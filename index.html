@@ -47,6 +47,49 @@ body {
     border-bottom: 2px solid #ffcc00;
     max-width: 100vw;
 }
+
+/* Toast Notification (Top-Center Position) */
+#toast {
+    position: fixed;
+    top: 80px; /* Position near the top */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    background: linear-gradient(90deg, #ff3131, #ff5733);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    animation: fadeInOut 3s ease-in-out;
+    z-index: 1000;
+    min-width: 250px; /* Set a minimum width */
+    text-align: center;
+}
+
+/* Keyframes for smooth fade-in and fade-out */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50px);
+    }
+}
+
+
+
 .menu-icon i{
         color: #fff;
         font-size: 30px;
@@ -262,7 +305,7 @@ footer {
             <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
         </div>
     </div>
-
+    <div id="toast" class="toast"></div>
     <!-- Product Listings -->
     <!-- Vanita"s Fireworks Collections-->
     <section class="product-listings">
