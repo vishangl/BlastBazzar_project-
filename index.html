@@ -226,27 +226,44 @@ footer {
 }
 
 /* Responsive Design */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1024px) {
     .navbar {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
+        padding: 10px 20px;
     }
-   
-    
     .nav-links {
-        flex-direction: column;
         gap: 15px;
-        text-align: center;
     }
     .product-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
     .product-card img {
-        height: 250px;
+        height: 280px;
     }
-    .product-listings h2 {
-        font-size: 26px;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .nav-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        display: none;
+    }
+    .nav-links.show {
+        display: flex;
+    }
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .product-card img {
+        height: 250px;
     }
 }
 
@@ -254,34 +271,89 @@ footer {
     .navbar {
         padding: 10px;
     }
-    .navbar ul{
+    .logo img {
+        width: 150px;
+    }
+    .menu-icon {
+        display: block;
+    }
+    .nav-links {
         position: absolute;
         top: 70px;
         left: 0;
         right: 0;
         flex-direction: column;
         text-align: center;
-        background: transparent;
+        background: rgba(0, 0, 0, 0.9);
         gap: 0;
         overflow: hidden;
+        padding: 10px 0;
+        display: none;
     }
-
-    .navbar ul li{
-        padding: 20px;
-    }
-    .menu-icon{
-        display: block;
-    }
-    .logo img {
-        width: 180px;
+    .nav-links.show {
+        display: flex;
     }
     .nav-links a {
         font-size: 18px;
+        padding: 12px 0;
+        display: block;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
     .product-card img {
         height: 200px;
     }
+    .product-listings h2 {
+        font-size: 22px;
+    }
 }
+
+/* Responsive Navbar */
+.menu-icon {
+    display: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Hide Navbar Links by Default */
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+/* Mobile Menu */
+@media only screen and (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 10px 0;
+        text-align: center;
+    }
+    .nav-links.show {
+        display: flex;
+    }
+    .nav-links li {
+        padding: 10px 0;
+    }
+    .nav-links a {
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+    }
+}
+
+
 </style>
 </head>
 <body>
@@ -301,8 +373,8 @@ footer {
             <li><a href="about_us.html">About Us</a></li>
             <li><a href="contact_us.html">Contact</a></li>
         </ul>
-        <div class="menu-icon">
-            <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i> <!-- Font Awesome Icon -->
         </div>
     </div>
     <div id="toast" class="toast"></div>
@@ -781,18 +853,11 @@ footer {
 
     <script src="cart.js"></script>
     <script>
-        let navlinks = document.getElementById("nav-links")
-        navlinks.style.maxHeight = "0px";
+       function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("show");
+     }
 
-        function toggleMenu(){
-            if(navlinks.style.maxHeight = "0px")
-            {
-                navlinks.style.maxHeight = "300px";
-            }
-            else{
-                navlinks.style.maxHeight = "0px"
-            }
-        }
     </script>
 </body>  
 </html>
