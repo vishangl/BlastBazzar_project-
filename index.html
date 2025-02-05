@@ -45,6 +45,11 @@ body {
     border-bottom: 2px solid #ffcc00;
 }
 
+.menu-icon i{
+        color: #fff;
+        font-size: 30px;
+    }
+
 .logo img {
     width: 230px;
     filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
@@ -183,12 +188,14 @@ footer {
 }
 
 /* Responsive Design */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
     .navbar {
         flex-direction: column;
         align-items: center;
         padding: 10px;
     }
+   
+    
     .nav-links {
         flex-direction: column;
         gap: 15px;
@@ -209,6 +216,24 @@ footer {
     .navbar {
         padding: 10px;
     }
+    .navbar ul{
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        text-align: center;
+        background: transparent;
+        gap: 0;
+        overflow: hidden;
+    }
+
+    .navbar ul li{
+        padding: 20px;
+    }
+    .menu-icon{
+        display: block;
+    }
     .logo img {
         width: 180px;
     }
@@ -223,7 +248,7 @@ footer {
 </head>
 <body>
     <!-- Announcement Bar -->
-    <marquee class="announcement-bar" scrollAmount="40">
+    <marquee class="announcement-bar" scrollAmount="20">
         Currently Accepting Orders for Bilimora!
     </marquee>
 
@@ -238,6 +263,9 @@ footer {
             <li><a href="about_us.html">About Us</a></li>
             <li><a href="contact_us.html">Contact</a></li>
         </ul>
+        <div class="menu-icon">
+            <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+        </div>
         <div class="navbar-icons">
             <img src="./images/home/shopping-cart-line.png" alt="cart">
             <span class="cart-items-count"></span>
@@ -718,6 +746,19 @@ footer {
     </footer>
 
     <script src="cart.js"></script>
+    <script>
+        let navlinks = document.getElementById("nav-links")
+        navlinks.style.maxHeight = "0px";
 
+        function toggleMenu(){
+            if(navlinks.style.maxHeight = "0px")
+            {
+                navlinks.style.maxHeight = "300px";
+            }
+            else{
+                navlinks.style.maxHeight = "0px"
+            }
+        }
+    </script>
 </body>  
 </html>

@@ -217,6 +217,9 @@
         <h2>Contact Us</h2>
         <div class="contact-form">
             <form>
+                <label for="contact">Contact</label>
+                <input type="text" id="contact" placeholder="Enter you number" required>
+
                 <label for="email">Email:</label>
                 <input type="email" id="email" placeholder="Enter your email" required>
 
@@ -236,6 +239,7 @@
     <script>
         function sendMail(){
             let parms = {
+                contact : document.getElementById("contact").value,
                 email : document.getElementById("email").value,
                 message : document.getElementById("message").value,
             }
