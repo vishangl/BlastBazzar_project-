@@ -14,9 +14,12 @@ body {
     color: #fff;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    max-width: 100vw; /* Prevents horizontal scrolling */
-    overflow-x: hidden; /* Hides horizontal scroll */
+    max-width: 100vw;
+    overflow-x: hidden;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 a {
@@ -56,7 +59,7 @@ a:hover {
     list-style: none;
     display: flex;
     gap: 25px;
-    flex-wrap: wrap; /* Prevents overflow */
+    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -71,42 +74,23 @@ a:hover {
     text-shadow: 0 0 10px #ff9900;
 }
 
-/* Hamburger Menu */
-.menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 30px;
-    transition: color 0.3s;
-}
-
-.menu-btn:focus {
-    outline: none;
-}
-
-.menu-btn.open {
-    color: #f1c40f;
-}
-
 /* Main Content */
 main {
     padding: 3em 10%;
     text-align: center;
     max-width: 100vw;
     overflow-x: hidden;
+    flex-grow: 1; /* Allow main to grow and fill space */
 }
 
-/* Main Content */
 main h2 {
-            font-size: 3.5em; /* Increased size */
-            color: #ff9900;
-            text-shadow: 0 0 10px #ff9900;
-            margin-bottom: 1em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+    font-size: 3.5em;
+    color: #ff9900;
+    text-shadow: 0 0 10px #ff9900;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
 /* Checkout Container */
 .checkout-container {
@@ -117,7 +101,6 @@ main h2 {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(8px);
-
 }
 
 .checkout-container {
@@ -137,7 +120,7 @@ table {
     text-shadow: 0 0 10px #ff9900;
     background: transparent;
     backdrop-filter: blur(8px);
-    overflow-x: auto; /* Ensures table fits within the screen */
+    overflow-x: auto;
     max-width: 100%;
 }
 
@@ -196,24 +179,36 @@ footer {
     color: white;
     text-align: center;
     padding: 15px;
-    bottom: 0; /* Stick to the bottom of the page */
+    bottom: 0;
     left: 0;
-    width: 100%; /* Ensure the footer spans the full width */
+    width: 100%;
     z-index: 1000;
     backdrop-filter: blur(8px);
     border-top: 2px solid #ffcc00;
+    position: sticky; /* Ensure footer sticks to the bottom */
 }
+
 /* Responsive Styles */
 @media only screen and (max-width: 768px) {
     .navbar {
+        text-align: center;
         flex-direction: column;
-        padding: 15px 20px;
+        align-items: center;
+        padding: 15px 10px;
     }
 
+    .nav-links {
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        text-align: center;
+    }
     .logo {
-        position: absolute;
+        align-items: center;
+        position: inherit;
         left: 30px;
-        top: 50%;
+        top: 13%;
         transform: translateY(-50%);
     }
 
@@ -222,25 +217,8 @@ footer {
         margin-bottom: 10px;
     }
 
-    .nav-links {
-        flex-direction: column;
-        gap: 15px;
-        align-items: center;
-        display: none;
-        width: 100%;
-        text-align: center;
-    }
-
     .nav-links a {
         font-size: 18px;
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .menu-btn {
-        display: block;
     }
 
     main {
@@ -294,6 +272,7 @@ footer {
         padding: 10px;
     }
 }
+
     </style>
 </head>
 <body>
@@ -302,7 +281,6 @@ footer {
             <div class="logo">
                 <img src="./images/home/signature (2).png" alt="BlastBazzar Logo">
             </div>
-            <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shopping_cart.html">Cart</a></li>
@@ -329,11 +307,6 @@ footer {
                 </tbody>
             </table>
 
-            <div id="additional-charges" style="margin-top: 20px;">
-                <div>GST (18%): ₹<span id="gst-charge">0</span></div>
-                <div>Delivery Charge: ₹<span id="delivery-charge">50</span></div>
-            </div>
-
             <h3 id="checkout-total">Total: ₹0</h3>
             <button class="cart-btn checkout-btn" onclick="completeCheckout()">Complete Purchase</button>
         </div>
@@ -344,7 +317,6 @@ footer {
     </footer>
 
     <script>
-// Existing functions to handle cart
 function getCart() {
     return JSON.parse(localStorage.getItem("cart")) || [];
 }
@@ -353,29 +325,17 @@ function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function showToast(message) {
-    let toast = document.getElementById("toast");
-    toast.innerHTML = message;
-    toast.style.display = "block";
-    toast.style.animation = "none"; // Reset animation
-    setTimeout(() => {
-        toast.style.animation = "fadeInOut 3s ease-in-out";
-    }, 10);
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 3000); // Hide after 3 seconds
-}
-
-// Function to update checkout page with cart details
 function updateCheckoutPage() {
     let cart = getCart();
     let checkoutItemsContainer = document.getElementById('checkout-items');
     let total = 0;
-    let gst = 0;
-    let deliveryCharge = 50; // Flat delivery charge
-    let gstRate = 0.18; // 18% GST
 
-    checkoutItemsContainer.innerHTML = ""; // Clear previous items
+    checkoutItemsContainer.innerHTML = "";
+
+    if (cart.length === 0) {
+        document.getElementById('checkout-total').textContent = `Total: ₹0`;
+        return;
+    }
 
     cart.forEach(item => {
         let itemTotal = item.price * item.quantity;
@@ -389,25 +349,19 @@ function updateCheckoutPage() {
         `;
     });
 
-    // Calculate GST
-    gst = total * gstRate;
-
-    // Update charges on page
-    document.getElementById('gst-charge').textContent = gst.toFixed(2);
-    document.getElementById('delivery-charge').textContent = deliveryCharge;
-    
-    // Update total including GST and Delivery
-    let finalTotal = total + gst + deliveryCharge;
-    document.getElementById('checkout-total').textContent = `Total: ₹${finalTotal.toFixed(2)}`;
+    document.getElementById('checkout-total').textContent = `Total: ₹${total.toFixed(2)}`;
 }
 
-// Function to complete the checkout process
 function completeCheckout() {
+    if (getCart().length === 0) {
+        alert("Your cart is empty. Please add items to proceed.");
+        return;
+    }
     alert("Your purchase has been completed successfully!");
-    window.location.href = "index.html"; // Redirect to Home Page after purchase
+    localStorage.removeItem("cart");
+    window.location.href = "index.html";
 }
 
-// Initialize the checkout page
 updateCheckoutPage();
     </script>
 </body>

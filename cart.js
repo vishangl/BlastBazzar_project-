@@ -43,7 +43,29 @@ function addToCart(id, name, price, image) {
     showToast(`${name} has been added to the cart!`);
 }
 
+// Function to increase quantity
+function increaseQuantity(id) {
+    let cart = getCart();
+    let item = cart.find(item => item.id === id);
+    if (item) {
+        item.quantity += 1;
+        saveCart(cart);
+        displayCart();
+    }
+}
 
+// Function to decrease quantity
+function decreaseQuantity(id) {
+    let cart = getCart();
+    let item = cart.find(item => item.id === id);
+    if (item && item.quantity > 1) {
+        item.quantity -= 1;
+    } else if (item && item.quantity === 1) {
+        cart = cart.filter(item => item.id !== id);
+    }
+    saveCart(cart);
+    displayCart();
+}
 
 // Function to display cart items on cart page
 function displayCart() {
@@ -60,7 +82,12 @@ function displayCart() {
                 <img src="${item.image}" style="width: 80px; height: auto; border-radius: 8px; margin-right: 15px;">
                 <div style="flex: 1;">
                     <span style="font-size: 18px; color: #f1c40f;">${item.name}</span><br>
-                    <span style="font-size: 16px; color: #ccc;">Quantity: ${item.quantity} - ₹${item.price * item.quantity}</span>
+                    <span style="font-size: 16px; color: #ccc;">Quantity: 
+                        <button onclick="decreaseQuantity('${item.id}')" style="background-color: #e74c3c; color: white; padding: 4px 8px; border: none; border-radius: 5px; cursor: pointer;">-</button>
+                        ${item.quantity}
+                        <button onclick="increaseQuantity('${item.id}')" style="background-color: #2ecc71; color: white; padding: 4px 8px; border: none; border-radius: 5px; cursor: pointer;">+</button>
+                        - ₹${item.price * item.quantity}
+                    </span>
                 </div>
                 <button onclick="removeFromCart('${item.id}')" style="background-color: #e74c3c; color: white; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer;">
                     Remove

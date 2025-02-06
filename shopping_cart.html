@@ -14,9 +14,12 @@ body {
     color: #fff;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    max-width: 100vw; /* Prevents horizontal scrolling */
-    overflow-x: hidden; /* Hides horizontal scroll */
+    max-width: 100vw;
+    overflow-x: hidden;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 a {
@@ -43,8 +46,6 @@ a:hover {
     backdrop-filter: blur(8px);
     border-bottom: 2px solid #ffcc00;
     box-sizing: border-box;
-    max-width: 100vw;
-    overflow-x: hidden;
 }
 
 .logo img {
@@ -56,7 +57,6 @@ a:hover {
     list-style: none;
     display: flex;
     gap: 25px;
-    flex-wrap: wrap; /* Prevents overflow */
 }
 
 .nav-links a {
@@ -71,42 +71,23 @@ a:hover {
     text-shadow: 0 0 10px #ff9900;
 }
 
-/* Hamburger Menu */
-.menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 30px;
-    transition: color 0.3s;
-}
-
-.menu-btn:focus {
-    outline: none;
-}
-
-.menu-btn.open {
-    color: #f1c40f;
-}
-
 /* Main Content */
 main {
+    flex: 1;
     padding: 3em 10%;
     text-align: center;
     max-width: 100vw;
     overflow-x: hidden;
 }
 
-/* Main Content */
 main h2 {
-            font-size: 3.5em; /* Increased size */
-            color: #ff9900;
-            text-shadow: 0 0 10px #ff9900;
-            margin-bottom: 1em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+    font-size: 3.5em;
+    color: #ff9900;
+    text-shadow: 0 0 10px #ff9900;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
 /* Cart Table */
 .cart-container {
@@ -131,8 +112,7 @@ table {
     text-shadow: 0 0 10px #ff9900;
     background: transparent;
     backdrop-filter: blur(8px);
-    overflow-x: auto; /* Ensures table fits within the screen */
-    max-width: 100%;
+    overflow-x: auto;
 }
 
 th, td {
@@ -148,7 +128,6 @@ th {
     font-size: 18px;
     color: #ff9900;
     text-shadow: 0 0 10px #ff9900;
-    backdrop-filter: blur(8px);
 }
 
 td img {
@@ -190,10 +169,7 @@ footer {
     color: white;
     text-align: center;
     padding: 15px;
-    bottom: 0; /* Stick to the bottom of the page */
-    left: 0;
-    width: 100%; /* Ensure the footer spans the full width */
-    z-index: 1000;
+    width: 100%;
     backdrop-filter: blur(8px);
     border-top: 2px solid #ffcc00;
 }
@@ -202,40 +178,24 @@ footer {
 @media only screen and (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        padding: 15px 20px;
+        align-items: center;
+        padding: 15px 10px;
     }
 
-    .logo {
-        position: absolute;
-        left: 30px;
-        top: 50%;
-        transform: translateY(-50%);
+    .nav-links {
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        text-align: center;
     }
-
     .logo img {
         width: 180px;
         margin-bottom: 10px;
     }
 
-    .nav-links {
-        flex-direction: column;
-        gap: 15px;
-        align-items: center;
-        display: none;
-        width: 100%;
-        text-align: center;
-    }
-
     .nav-links a {
         font-size: 18px;
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .menu-btn {
-        display: block;
     }
 
     main {
@@ -289,8 +249,6 @@ footer {
         padding: 10px;
     }
 }
-
-
     </style>
 </head>
 <body>
@@ -299,7 +257,6 @@ footer {
             <div class="logo">
                 <img src="./images/home/signature (2).png" alt="BlastBazzar Logo">
             </div>
-            <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shopping_cart.html">Cart</a></li>
@@ -333,14 +290,6 @@ footer {
 
     <script src="cart.js"></script>
     <script>
-        function toggleMenu() {
-            const menuButton = document.querySelector('.menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('open');
-            menuButton.classList.toggle('open');
-        }
-    </script>
-       <script>
         function getCartItems() {
             return [
                 { name: "Product A", quantity: 2, price: 150 },

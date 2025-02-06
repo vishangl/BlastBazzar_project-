@@ -28,7 +28,7 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.6);  /* Semi-transparent black */
     padding: 15px 30px;
     color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
@@ -70,7 +70,7 @@ main {
     justify-content: center;
     padding: 3em;
 }
-/* Main Content */
+
 main h2 {
     font-size: 3.5em; /* Increased size */
     margin-bottom: 1em;
@@ -79,7 +79,6 @@ main h2 {
     color: #ff9900;
     text-shadow: 0 0 10px #ff9900;
 }
-
 
 /* About Section */
 .about-section {
@@ -161,20 +160,135 @@ footer {
     border-top: 2px solid #ffcc00;
 }
 
+/* Responsive Styles */
+@media only screen and (max-width: 1024px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .logo img {
+        width: 180px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 18px;
+    }
+
+    main h2 {
+        font-size: 2.5em;
+    }
+
+    .about-section {
+        max-width: 90%;
+        padding: 2em;
+    }
+
+    .about-section h2 {
+        font-size: 48px;
+    }
+
+    .about-section h3 {
+        font-size: 24px;
+    }
+
+    .about-section ul li {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 10px;
+    }
+
+    .nav-links {
+        
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo img {
+        width: 150px;
+    }
+
+    main h2 {
+        font-size: 2.2em;
+    }
+
+    .about-section {
+        max-width: 95%;
+        padding: 1.5em;
+    }
+
+    .about-section h2 {
+        font-size: 40px;
+    }
+
+    .about-section h3 {
+        font-size: 22px;
+    }
+
+    .about-section ul li {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+    }
+
+    main h2 {
+        font-size: 1.8em;
+    }
+
+    .about-section {
+        max-width: 100%;
+        padding: 1em;
+    }
+
+    .about-section h2 {
+        font-size: 32px;
+    }
+
+    .about-section h3 {
+        font-size: 20px;
+    }
+
+    .about-section ul li {
+        font-size: 14px;
+    }
+}
     </style>
 </head>
 <body>
-        <div class="navbar">
-            <div class="logo">
-                <img src="./images/home/signature (2).png" alt="BlastBazzar Logo">
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shopping_cart.html">Cart</a></li>
-                <li><a href="about_us.html">About Us</a></li>
-                <li><a href="contact_us.html">Contact</a></li>
-            </ul>
+    <div class="navbar">
+        <div class="logo">
+            <img src="./images/home/signature (2).png" alt="BlastBazzar Logo">
         </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shopping_cart.html">Cart</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="contact_us.html">Contact</a></li>
+        </ul>
+    </div>
     <main>
         <h2>About Us</h2>
         <section class="about-section">
