@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking | BlastBazzar</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #0b0b0b;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Tracking Container */
+        .tracking-container {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #ff9900;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff3131, #ff5733);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #ff5733, #ff3131);
+        }
+
+        /* Order Status */
+        #order-status {
+            margin-top: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 20px 0;
+            height: 20px;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ffcc00, #ff9900);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* Error Message */
+        .error {
+            color: #ff3131;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tracking Container -->
+    <div class="tracking-container">
+        <h1>Track Your Order 🚚</h1>
+        
+        <!-- Input for Order ID -->
+        <input type="text" id="order-id" placeholder="Enter your Order ID">
+        <button onclick="trackOrder()">Track Order</button>
+
+        <!-- Order Status Section -->
+        <div id="order-status" class="hidden">
+            <h2>Status: <span id="status-text"></span></h2>
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+            <p>Estimated Delivery: <span id="delivery-date"></span></p>
+        </div>
+
+        <!-- Error Message -->
+        <p id="error-message" class="error hidden">Invalid Order ID. Please try again.</p>
+    </div>
+
+    <script>
+        // Sample Order Data (You can later replace this with real data from your database)
+        const orders = {
+            "BB1234": { status: "Processing", progress: 25, deliveryDate: "Feb 12, 2025" },
+            "BB5678": { status: "Shipped", progress: 50, deliveryDate: "Feb 10, 2025" },
+            "BB9101": { status: "Out for Delivery", progress: 75, deliveryDate: "Feb 8, 2025" },
+            "BB1121": { status: "Delivered", progress: 100, deliveryDate: "Feb 5, 2025" }
+        };
+
+        // Track Order Function
+        function trackOrder() {
+            const orderId = document.getElementById("order-id").value.toUpperCase();
+            const statusText = document.getElementById("status-text");
+            const progressBar = document.getElementById("progress");
+            const deliveryDate = document.getElementById("delivery-date");
+            const orderStatus = document.getElementById("order-status");
+            const errorMessage = document.getElementById("error-message");
+
+            // Check if Order Exists
+            if (orders[orderId]) {
+                const order = orders[orderId];
+                statusText.textContent = order.status;
+                progressBar.style.width = `${order.progress}%`;
+                deliveryDate.textContent = order.deliveryDate;
+
+                // Show Order Status
+                orderStatus.classList.remove("hidden");
+                errorMessage.classList.add("hidden");
+            } else {
+                // Show Error Message
+                orderStatus.classList.add("hidden");
+                errorMessage.classList.remove("hidden");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -800,5 +800,34 @@ footer {
      }
 
     </script>
+
+
+
+<!-- Firebase connection -->
+
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDTeRYrv3lTYNADyRjvUeumW1dYjFC_2fE",
+      authDomain: "blastbazzar-b835d.firebaseapp.com",
+      projectId: "blastbazzar-b835d",
+      storageBucket: "blastbazzar-b835d.firebasestorage.app",
+      messagingSenderId: "849482832101",
+      appId: "1:849482832101:web:a3eac0b1f1bd18083b1c0c",
+      measurementId: "G-XS1FF6JQFH"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </body>  
 </html>
