@@ -3,61 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delivery Information</title>
+    <title>Sign Up | BlastBazzar</title>
     <style>
-         /* Basic Reset */
-         * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-            background: url("images/home/background2.gif");
+        body {
             font-family: 'Poppins', sans-serif;
-            color: #f5f5f5;
+            background: url("images/home/background2.gif") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
             padding: 15px 30px;
-            color: white;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
             border-bottom: 2px solid #ffcc00;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
             z-index: 1000;
-            backdrop-filter: blur(8px);
         }
 
         .logo img {
-            width: 200px;
-            height: auto;
-            filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
+            width: 150px;
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 25px;
+            gap: 20px;
         }
 
         .nav-links a {
-            color: white;
             text-decoration: none;
-            font-size: 20px;
-            font-weight: 600;
+            color: #fff;
+            font-size: 18px;
             transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #ff9900;
-            text-shadow: 0 0 10px #ff9900;
+            color: #ffcc00;
         }
 
         main {
@@ -65,8 +61,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
+            padding: 100px 20px 20px;
         }
 
         .container {
@@ -74,15 +69,15 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
             width: 100%;
-            box-sizing: border-box;
+            max-width: 400px;
+            border: 2px solid #ffcc00;
         }
 
         h2 {
             text-align: center;
             margin-bottom: 20px;
-            color: #f39c12;
+            color: #ffcc00;
         }
 
         label {
@@ -90,114 +85,61 @@
             margin: 10px 0 5px;
         }
 
-        input[type="text"], input[type="tel"], input[type="number"] {
+        input {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #ffcc00;
         }
 
         button {
             width: 100%;
             padding: 12px;
-            background-color: #27ae60;
-            color: #fff;
+            background: #ffcc00;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
+            color: #000;
             font-size: 16px;
-            box-sizing: border-box;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
         button:hover {
-            background-color: #1e8449;
+            background: #e6b800;
         }
 
-        .location-btn {
-            background-color: #2980b9;
-            margin-bottom: 15px;
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            border-top: 2px solid #ffcc00;
         }
 
-        .location-btn:hover {
-            background-color: #1c5985;
+        .footer-links a {
+            color: #ffcc00;
+            margin: 0 10px;
+            text-decoration: none;
         }
 
-        /* Footer */
-    footer {
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        text-align: center;
-        padding: 15px;
-        width: 100%;
-        z-index: 1000;
-        backdrop-filter: blur(8px);
-        border-top: 2px solid #ffcc00;
-        position: sticky;
-        bottom: 0;
-    }
-
-    .footer-links {
-        margin-top: 10px;
-    }
-
-    .footer-links a {
-        color: #ffcc00;
-        text-decoration: none;
-        margin: 0 10px;
-        font-size: 14px;
-    }
-
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
 
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
-                padding: 10px 15px;
+                padding: 10px;
             }
 
             .nav-links {
                 flex-direction: column;
                 gap: 10px;
                 text-align: center;
-            }
-
-            .logo img {
-                width: 150px;
-            }
-
-            .container {
-                padding: 20px;
-                max-width: 90%;
-            }
-
-            input[type="text"], input[type="tel"], input[type="number"] {
-                padding: 8px;
-            }
-
-            button {
-                padding: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo img {
-                width: 120px;
-            }
-
-            h2 {
-                font-size: 1.5em;
-            }
-
-            input[type="text"], input[type="tel"], input[type="number"] {
-                font-size: 14px;
-            }
-
-            button {
-                font-size: 14px;
             }
         }
     </style>
@@ -215,28 +157,33 @@
 
     <main>
         <div class="container">
-            <h2>Delivery Information</h2>
-            <form id="deliveryForm">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+            <h2>Create Your Account</h2>
+            <form id="signupForm">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required>
 
-                <label for="city">City:</label>
-                <input type="text" id="city" name="city" required>
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
 
-                <label for="state">State:</label>
-                <input type="text" id="state" name="state" required>
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address" required>
 
-                <label for="zipcode">Zip Code:</label>
-                <input type="number" id="zipcode" name="zipcode" required>
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="Enter your city" required>
 
-                <button type="button" class="location-btn" onclick="getLocation()">Use My Current Location</button>
-                <button type="submit">Submit</button>
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" placeholder="Enter your state" required>
+
+                <label for="zipcode">Zip Code</label>
+                <input type="number" id="zipcode" name="zipcode" placeholder="Enter your zip code" required>
+
+                <button type="submit">Sign Up</button>
             </form>
         </div>
     </main>
@@ -248,52 +195,5 @@
             <a href="license.html">License</a>
         </div>
     </footer>
-
-    <script>
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
-        }
-
-        function showPosition(position) {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            document.getElementById('address').value = `Latitude: ${latitude}, Longitude: ${longitude}`;
-        }
-
-        function showError(error) {
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    alert("User denied the request for Geolocation.");
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    alert("Location information is unavailable.");
-                    break;
-                case error.TIMEOUT:
-                    alert("The request to get user location timed out.");
-                    break;
-                case error.UNKNOWN_ERROR:
-                    alert("An unknown error occurred.");
-                    break;
-            }
-        }
-
-        document.getElementById('deliveryForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                address: document.getElementById('address').value,
-                city: document.getElementById('city').value,
-                state: document.getElementById('state').value,
-                zipcode: document.getElementById('zipcode').value
-            };
-            console.log('Form Data:', formData);
-            alert("Your delivery information has been submitted successfully!");
-        });
-    </script>
 </body>
 </html>

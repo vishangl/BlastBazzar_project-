@@ -71,6 +71,15 @@ a:hover {
     text-shadow: 0 0 10px #ff9900;
 }
 
+.menu-btn {
+    display: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
 /* Main Content */
 main {
     flex: 1;
@@ -166,51 +175,63 @@ td img {
 
 /* Footer */
 footer {
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        text-align: center;
-        padding: 15px;
-        width: 100%;
-        z-index: 1000;
-        backdrop-filter: blur(8px);
-        border-top: 2px solid #ffcc00;
-        position: sticky;
-        bottom: 0;
-    }
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    border-top: 2px solid #ffcc00;
+    position: sticky;
+    bottom: 0;
+}
 
-    .footer-links {
-        margin-top: 10px;
-    }
+.footer-links {
+    margin-top: 10px;
+}
 
-    .footer-links a {
-        color: #ffcc00;
-        text-decoration: none;
-        margin: 0 10px;
-        font-size: 14px;
-    }
+.footer-links a {
+    color: #ffcc00;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
 
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
+.footer-links a:hover {
+    text-decoration: underline;
+}
 
 /* Responsive Styles */
 @media only screen and (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
         padding: 15px 10px;
     }
 
+    .menu-btn {
+        display: block;
+    }
+
     .nav-links {
-        align-items: center;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
         flex-direction: column;
         gap: 15px;
-        width: 100%;
-        text-align: center;
+        width: 200px;
+        padding: 20px;
+        display: none;
     }
+
+    .nav-links.active {
+        display: flex;
+    }
+
     .logo img {
         width: 180px;
-        margin-bottom: 10px;
     }
 
     .nav-links a {
@@ -279,7 +300,6 @@ footer {
     background: linear-gradient(#e09b1b, #7a2e11);
 }
 
-
     </style>
 </head>
 <body>
@@ -288,6 +308,7 @@ footer {
             <div class="logo">
                 <img src="./images/home/signature (2).png" alt="BlastBazzar Logo">
             </div>
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shopping_cart.html">Cart</a></li>
@@ -325,6 +346,11 @@ footer {
 
     <script src="cart.js"></script>
     <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
         function getCartItems() {
             return [
                 { name: "Product A", quantity: 2, price: 150 },

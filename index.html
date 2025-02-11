@@ -74,6 +74,27 @@ body {
     text-shadow: 0 0 10px #ff9900;
 }
 
+.menu-toggle 
+{
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 70px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ffcc00;
+        }
+
+
 /* Toast Notification (Top-Center Position) */
 #toast {
     position: fixed;
@@ -238,9 +259,7 @@ footer {
     .navbar {
         padding: 10px 20px;
     }
-    .nav-links {
-        gap: 15px;
-    }
+
     .product-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
@@ -326,6 +345,7 @@ footer {
         <div class="logo">
             <img src="./images/home/signature (2).png" alt="BlastBazzar Logo">
         </div>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="shopping_cart.html">Cart</a></li>
