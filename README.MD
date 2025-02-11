@@ -23,7 +23,7 @@ Your ultimate destination for lighting up celebrations! BlastBazzar is an exciti
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/blastbazzar.git
+   git clone https://github.com/vishangl/BlastBazzar_project-.git
    ```
 
 2. **Navigate to the project directory:**
@@ -76,7 +76,7 @@ We love contributions! Here’s how you can join the BlastBazzar crew:
 
 For support, feedback, or just to say hi:
 
-- **Email:** support@blastbazzar.com
+- **Email:** vishang1807@gmail.com
 - **Website:** [https://blast-bazzar-project.vercel.app/](https://blast-bazzar-project.vercel.app/)
 
 &copy; 2025 **BlastBazzar**. Let the celebrations begin! 🎆💫
