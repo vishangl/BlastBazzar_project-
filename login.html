@@ -271,9 +271,11 @@
         <div class="login-container">
             <h2>Login</h2>
             <form class="login-form" id="loginform">
-                <input type="text" name="email" placeholder="email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" href="index.html">Login</button>
+                <input type="text" name="email" placeholder="email">
+                <input type="password" name="password" placeholder="Password">
+                <button type="button" id="loginButton">Login</button>
+                <button type="button" id="signupButton">Sign Up</button>
+
             </form>
         </div>
     </main>
@@ -289,5 +291,21 @@
             document.getElementById('nav-links').classList.toggle('active');
         });
     </script>
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+    
+        // Redirect on Login Button Click
+        document.getElementById('loginButton').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    
+        // Redirect on Sign Up Button Click
+        document.getElementById('signupButton').addEventListener('click', function() {
+            window.location.href = 'details.html';
+        });
+    </script>
+    
 </body>
 </html>
